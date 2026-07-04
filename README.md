@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AgentForge AI — Company Website
 
-## Getting Started
+Premium, enterprise-grade marketing website for **AgentForge AI**, an AI consulting and automation firm serving businesses, nonprofits, educational institutions, healthcare organizations, professional service firms, and government agencies.
 
-First, run the development server:
+Built with **Next.js 16**, **React 19**, **Tailwind CSS 4**, and **TypeScript**.
+
+## Pages
+
+| Page | Path |
+| --- | --- |
+| Home | `/` |
+| Services (10 services) | `/services` |
+| Industries (8 sectors) | `/industries` |
+| Solutions | `/solutions` |
+| Case Studies | `/case-studies` |
+| About Us | `/about` |
+| Contact | `/contact` |
+| Book a Free AI Workflow Audit | `/book-audit` |
+
+## Running the site locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To create a production build:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Editing content (no coding required)
 
-To learn more about Next.js, take a look at the following resources:
+Almost every word on the site — services, industries, case studies, testimonials, FAQs, statistics, the process steps, and the contact email — lives in one file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+lib/data.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Open it in any text editor, change the text between the quotation marks, save, and the whole site updates. The navigation and footer build themselves from the same file.
 
-## Deploy on Vercel
+## Contact forms
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The forms on **Contact** and **Book a Free AI Workflow Audit** open the visitor's email app with their answers pre-filled, addressed to the email in `lib/data.ts` (`site.email`). This works with zero setup.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For silent in-browser submissions (no email app popup), sign up for a free form service such as [Formspree](https://formspree.io) and swap the `handleSubmit` function in `components/LeadForm.tsx` for a `fetch` call to your form endpoint.
+
+## Deploying (making the site public)
+
+The easiest path is [Vercel](https://vercel.com) (free tier is fine):
+
+1. Push this repository to GitHub (already done if you're reading this there).
+2. Sign in to Vercel with your GitHub account.
+3. Click **Add New → Project**, pick this repository, and click **Deploy**.
+
+Vercel will give you a live URL and redeploy automatically whenever the repo changes. When you attach a custom domain, update `site.url` in `lib/data.ts` so SEO tags and the sitemap point to the real address.
+
+## Project structure
+
+```
+app/            Pages (one folder per page) + SEO (sitemap, robots, icon)
+components/     Reusable building blocks (header, footer, cards, forms…)
+lib/data.ts     ALL site content — edit this to change the words
+```
