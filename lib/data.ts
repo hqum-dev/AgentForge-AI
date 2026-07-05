@@ -40,7 +40,7 @@ export const site = {
   tagline: "Enterprise AI Agents & Workflow Automation",
   description:
     "AgentForge AI helps businesses, nonprofits, educational institutions, healthcare organizations, professional service firms, and government agencies eliminate repetitive work with AI agents, workflow automation, dashboards, and custom AI solutions.",
-  url: "https://agentforge-ai.example.com",
+  url: "https://hqum-dev.github.io/AgentForge-AI",
   email: "amaanah1@gmail.com",
 };
 
